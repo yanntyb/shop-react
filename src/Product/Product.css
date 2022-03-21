@@ -1,0 +1,30 @@
+.Product{
+    border: 1px solid darkgrey;
+    padding: 2%;
+    width: 100%;
+    margin-bottom: 2%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 22vh;
+    background: white;
+}
+
+.Product img{
+    width: 30%;
+    height: 100%;
+}
+
+.Product .content{
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    position: relative;
+}
+
+
+.Product .price{
+    position: absolute;
+    bottom: 0;
+}
