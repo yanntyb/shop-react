@@ -26,9 +26,21 @@ class CategoryController extends AbstractController
         $this->serializer = new Serializer($normalizers, $encoders);
     }
 
+    /**
+     * Return product
+     * @param int $id
+     * @return Response
+     */
     #[Route("/{id}", name: "single")]
     public function index(int $id): Response
     {
-        return $this->json($this->serializer->serialize($this->repository->find($id), "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ['category']]));
+        // If id = 0 then return all product
+        if ($id === 0) {
+            return $this->json($this->serializer->serialize($this->repository->findAll(), "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ['category']]));
+        }
+        if ($this->repository->find($id)) {
+            return $this->json($this->serializer->serialize($this->repository->find($id), "json", [AbstractNormalizer::IGNORED_ATTRIBUTES => ['category']]));
+        }
+        return $this->json(["products" => []]);
     }
 }
